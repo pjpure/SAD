@@ -1,1 +1,2 @@
 Test auth with git bash
+auth success
