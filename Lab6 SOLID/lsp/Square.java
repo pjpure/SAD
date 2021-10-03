@@ -1,13 +1,22 @@
 package lsp;
 
-public class Square extends Rectangle {
+public class Square extends Quadrilateral {
+
+    private int side;
 
     Square(int side) {
-        this.setSide(side);
+        this.side = side;
     }
 
     public void setSide(int side) {
-        super.setWidth(side);
-        super.setHeight(side);
+        this.side = side;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    public int getArea() {
+        return side * side;
     }
 }
