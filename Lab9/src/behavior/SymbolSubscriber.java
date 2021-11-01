@@ -14,9 +14,7 @@ public class SymbolSubscriber extends StringSubscriber {
 
     @Override
     public void onNext(String item) {
-        Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}/\\[\\]~-]");
-        Matcher hasSpecial = special.matcher(item);
-        if(hasSpecial.find()){
+
             try {
                 Writer file = new FileWriter("Symbol.txt",true);
                 file.write(item+"\n");
@@ -24,6 +22,13 @@ public class SymbolSubscriber extends StringSubscriber {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
+    }
+
+    @Override
+    public boolean check(String item) {
+        Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}/\\[\\]~-]");
+        Matcher hasSpecial = special.matcher(item);
+        return hasSpecial.find();
     }
 }

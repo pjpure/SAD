@@ -14,7 +14,9 @@ public class StringPublisher implements Publisher<String> {
 
     public void publish(String s){
         for(StringSubscription subscription : subscriptions){
-            subscription.publish(s);
+            if(subscription.check(s)){
+                subscription.publish(s);
+            }
         }
     }
 }

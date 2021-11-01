@@ -37,5 +37,5 @@ public abstract class StringSubscriber implements Subscriber<String> {
         System.out.println("Complete");
     }
 
-
+    abstract public boolean check(String item);
 }

@@ -14,9 +14,7 @@ public class AlphabetSubscriber extends StringSubscriber{
 
     @Override
     public void onNext(String item) {
-        Pattern letter = Pattern.compile("[a-zA-z]",Pattern.CASE_INSENSITIVE);
-        Matcher hasLetter = letter.matcher(item);
-        if(hasLetter.find()){
+
             try {
                 Writer file = new FileWriter("Alphabet.txt",true);
                 file.write(item+"\n");
@@ -24,7 +22,14 @@ public class AlphabetSubscriber extends StringSubscriber{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
+    }
+
+    @Override
+    public boolean check(String item) {
+        Pattern letter = Pattern.compile("[a-zA-z]",Pattern.CASE_INSENSITIVE);
+        Matcher hasLetter = letter.matcher(item);
+        return hasLetter.find();
     }
 
 }

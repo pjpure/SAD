@@ -13,9 +13,6 @@ public class NumberSubscriber extends StringSubscriber{
     }
     @Override
     public void onNext(String item) {
-        Pattern digit = Pattern.compile("[0-9]");
-        Matcher hasDigit = digit.matcher(item);
-        if(hasDigit.find()){
             try {
                 Writer file = new FileWriter("Number.txt",true);
                 file.write(item + "\n");
@@ -23,6 +20,12 @@ public class NumberSubscriber extends StringSubscriber{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+    }
+
+    @Override
+    public boolean check(String item) {
+        Pattern digit = Pattern.compile("[0-9]");
+        Matcher hasDigit = digit.matcher(item);
+        return hasDigit.find();
     }
 }

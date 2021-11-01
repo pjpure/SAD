@@ -6,6 +6,16 @@ public class StringSubscription implements Subscription {
     StringSubscription(Subscriber subscriber){
         this.subscriber = subscriber;
     }
+
+    public void publish(String s) {
+        subscriber.onNext(s);
+    }
+
+    public boolean check(String item) {
+        return ((StringSubscriber) this.subscriber).check(item);
+    }
+
+
     @Override
     public void request(long n) {
 
@@ -14,9 +24,5 @@ public class StringSubscription implements Subscription {
     @Override
     public void cancel() {
 
-    }
-
-    public void publish(String s) {
-        subscriber.onNext(s);
     }
 }
