@@ -1,16 +1,20 @@
 package behavior;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.concurrent.Flow.Subscription;
 import java.util.concurrent.Flow.Subscriber;
 
 public abstract class StringSubscriber implements Subscriber<String> {
 
     private Subscription subscription;
+    private String filename;
 
     public StringSubscriber(String name){
         try{
+            filename = name;
             File file = new File(name);
             file.createNewFile();
         } catch (IOException e) {
@@ -24,7 +28,13 @@ public abstract class StringSubscriber implements Subscriber<String> {
 
     @Override
     public void onNext(String item) {
-
+        try {
+            Writer file = new FileWriter(filename,true);
+            file.write(item+"\n");
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

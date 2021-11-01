@@ -11,6 +11,7 @@ public class StringSubscription implements Subscription {
         subscriber.onNext(s);
     }
 
+
     public boolean check(String item) {
         return ((StringSubscriber) this.subscriber).check(item);
     }

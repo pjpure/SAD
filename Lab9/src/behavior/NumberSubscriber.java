@@ -11,16 +11,6 @@ public class NumberSubscriber extends StringSubscriber{
     public NumberSubscriber() {
         super("Number.txt");
     }
-    @Override
-    public void onNext(String item) {
-            try {
-                Writer file = new FileWriter("Number.txt",true);
-                file.write(item + "\n");
-                file.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-    }
 
     @Override
     public boolean check(String item) {
